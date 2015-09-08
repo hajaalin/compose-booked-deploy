@@ -1,0 +1,20 @@
+---
+
+# list of allowed groups
+allowed_groups:
+    - group: { ldapname: 'uid=grp-A34500-cholesterol,ou=alma_workgroups,ou=groups,o=hy', omename: 'Cholesterol' }
+    - group: { ldapname: 'uid=grp-A91900-lmu,ou=alma_workgroups,ou=groups,o=hy', omename: 'LMU' }
+    - group: { ldapname: 'uid=grp-A91900-bi-lappal,ou=alma_workgroups,ou=groups,o=hy', omename: 'BI-Lappalainen' }
+    - group: { ldapname: 'uid=grp-A91900-bi-vart,ou=alma_workgroups,ou=groups,o=hy', omename: 'BI-Vartiainen' }
+    - group: { ldapname: 'uid=grp-A34520-biu,ou=alma_workgroups,ou=groups,o=hy', omename: 'BIU' }
+    - group: { ldapname: 'uid=grp-A91900-bi-em,ou=alma_workgroups,ou=groups,o=hy', omename: 'BI-EM' }
+    - group: { ldapname: 'uid=grp-A34550-kidney,ou=alma_workgroups,ou=groups,o=hy', omename: 'Sariola' }
+#    - group: { ldapname: '', omename: '' }
+#    - group: { ldapname: '', omename: '' }
+
+# ldap server
+ldap_host: "ldap-internal.it.helsinki.fi"
+ldap_port: 636
+
+# nginx certificate subject
+cert_subject: "/C=FI/ST=Uusimaa/L=Helsinki/O=University of Helsinki/CN={{ ansible_fqdn }}"

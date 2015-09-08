@@ -1,0 +1,5 @@
+[booked_hosts_hy]
+reservations.lmu.bi.helsinki.fi
+
+[booked_hosts:children]
+booked_hosts_hy

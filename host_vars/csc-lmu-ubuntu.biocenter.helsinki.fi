@@ -1,0 +1,12 @@
+---
+booked_admin_email: "harri.jaalinoja@helsinki.fi"
+
+docker_host: "csc-lmu-ubuntu.biocenter.helsinki.fi"
+docker_host_certificate: "/etc/pki/tls/cert/cert-2606-csc-lmu-ubuntu.biocenter.helsinki.fi.pem"
+docker_host_key: "/etc/pki/tls/private/visitor-csc-lmu.key"
+
+virtual_host: "csc-lmu-ubuntu.biocenter.helsinki.fi"
+virtual_proto: "https"
+virtual_port: "443"
+
+ocf_export_dir: "/tmp/ocf_export"

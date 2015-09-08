@@ -1,0 +1,38 @@
+ambassador:
+  image: cpuguy83/docker-grand-ambassador
+  volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock"
+  command: "-name booked_mysql -name booked_web"
+
+mysql:
+  build: booked-mysql
+  container_name: booked_mysql
+  environment:
+    MYSQL_ROOT_PASSWORD:
+    MYSQL_USER: "booked_user"
+    MYSQL_PASSWORD:
+    MYSQL_DATABASE: "bookedscheduler"
+  links:
+   - "ambassador:web"
+  volumes:
+   - "/etc/localtime:/etc/localtime"
+
+web:
+  build: booked-apache
+  container_name: booked_apache
+  ports:
+   - "443:443"
+  environment:
+    MYSQL_PASSWORD:
+    BOOKED_RECAPTCHA_SITE_KEY:
+    BOOKED_RECAPTCHA_SECRET_KEY:
+    BOOKED_ADMIN_EMAIL: {{ booked_admin_email }}
+    DOCKER_HOST: {{ docker_host }}
+  links:
+   - "ambassador:mysql"
+  volumes:
+   - "/home/hajaalin/GitHub/fig-booked/apache/php:/newphp"
+   - "/etc/localtime:/etc/localtime"
+   - {{ docker_host_certificate }}:/etc/pki/tls/certs/docker-host-certificate.pem
+   - {{ docker_host_key }}:/etc/pki/tls/private/docker-host.key
+   - {{ ocf_export_dir }}:/ocf_export

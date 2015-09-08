@@ -1,0 +1,7 @@
+---
+
+- hosts: booked_hosts
+  sudo: yes
+  roles:
+    - deploy-compose-booked
+    

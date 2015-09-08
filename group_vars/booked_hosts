@@ -1,0 +1,18 @@
+---
+# vars file for booked_hosts
+
+app_name: "booked"
+compose_tag: "ansible"
+
+# name to use for init script
+service_name: "{{ app_name }}_{{ compose_tag }}"
+
+# name to use for Docker containers
+project_name: "{{ service_name }}"
+
+# directory where docker-compose.yml etc will be stored
+deploy_root: "/opt/deploy/{{ service_name }}"
+
+
+# db volumes
+#volume_pgsql: "/home/booked/data/pgsql"

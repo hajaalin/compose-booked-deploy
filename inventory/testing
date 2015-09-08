@@ -1,0 +1,5 @@
+[booked_hosts_hy]
+csc-lmu-ubuntu.biocenter.helsinki.fi
+
+[booked_hosts:children]
+booked_hosts_hy

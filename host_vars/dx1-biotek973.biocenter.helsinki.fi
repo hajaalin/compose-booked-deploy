@@ -1,0 +1,8 @@
+---
+booked_admin_email: "harri.jaalinoja@helsinki.fi"
+
+docker_host: "dx1-biotek973.biocenter.helsinki.fi"
+docker_host_certificate: "/home/hajaalin/booked_varmenteet/cert-2605-dx1-biotek973.biocenter.helsinki.fi.pem"
+docker_host_key: "/home/hajaalin/booked_varmenteet/visitor-dx1-biotek973.key"
+
+ocf_export_dir: "/home/hajaalin/tmp/ocf_export"

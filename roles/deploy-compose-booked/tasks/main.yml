@@ -1,0 +1,40 @@
+---
+# tasks file for roles/deploy-compose-omero
+- name: make sure ocf export directory exists
+  file: path={{ ocf_export_dir }} state=directory
+
+- name: Check if previous version exists
+  stat: path=/etc/init.d/{{ service_name }}
+  register: p
+- name: Shutdown previous version if it exists
+  service: name={{ service_name }} state=stopped
+  when: p.stat.exists
+
+- name: Initialize the deploy root and gather facts
+  file: path={{ deploy_root }}/{{ item }} state=directory
+  with_items:
+    - shared
+    - releases
+    - releases/{{ docker_tag }}
+
+
+- name: clone deployment files shared between releases
+  template: src={{ item }} dest={{ deploy_root }}/shared/{{ item }}
+  with_items:
+    - secrets.ejson
+    - make_env.sh
+
+- name: clone deployment files of new release
+  template: src={{ item }} dest={{ deploy_root }}/releases/{{ docker_tag }}/{{ item }}
+  with_items:
+    - docker-compose.yml
+
+- name: install init script
+  template: src=booked-init-script
+            dest=/etc/init.d/{{ service_name }}
+            backup=yes
+            mode=0755
+
+
+- name: start service
+  service: name={{ service_name }} state=started
