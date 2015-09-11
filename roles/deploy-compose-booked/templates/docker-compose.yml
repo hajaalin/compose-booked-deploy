@@ -5,7 +5,7 @@ ambassador:
   command: "-name booked_mysql -name booked_web"
 
 mysql:
-  build: booked-mysql
+  image: {{ docker_owner }}/booked-mysql:{{ docker_tag }}
   container_name: booked_mysql
   environment:
     MYSQL_ROOT_PASSWORD:
@@ -18,7 +18,7 @@ mysql:
    - "/etc/localtime:/etc/localtime"
 
 web:
-  build: booked-apache
+  image: {{ docker_owner }}/booked-apache:{{ docker_tag }}
   container_name: booked_apache
   ports:
    - "443:443"
