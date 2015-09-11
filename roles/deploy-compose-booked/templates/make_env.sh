@@ -1,4 +1,4 @@
-SECRETS="secrets.ejson"
+SECRETS="{{ deploy_root }}/shared/secrets.ejson"
 
 # MYSQL_ROOT_PASSWORD is used by the official MySQL image
 # This is needed to start the database.
