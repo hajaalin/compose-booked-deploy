@@ -1,12 +1,13 @@
 ambassador:
   image: cpuguy83/docker-grand-ambassador
+  container_name: {{ service_name }}_ambassador
   volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
-  command: "-name booked_mysql -name booked_web"
+  command: "-name {{ service_name }}_mysql -name {{ service_name }}_apache"
 
 mysql:
   image: {{ docker_owner }}/booked-mysql:{{ docker_tag }}
-  container_name: booked_mysql
+  container_name: {{ service_name }}_mysql
   environment:
     MYSQL_ROOT_PASSWORD:
     MYSQL_USER: "booked_user"
@@ -17,9 +18,9 @@ mysql:
   volumes:
    - "/etc/localtime:/etc/localtime"
 
-web:
+apache:
   image: {{ docker_owner }}/booked-apache:{{ docker_tag }}
-  container_name: booked_apache
+  container_name: {{ service_name }}_apache
   ports:
    - "443:443"
   environment:
