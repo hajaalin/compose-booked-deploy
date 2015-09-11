@@ -17,7 +17,6 @@ COMPOSE="${DEPLOY_DIR}/docker-compose.yml"
 
 CMDBASE=". ${ENV_FILE} ; docker-compose -f $COMPOSE -p $PROJECT"
 START="${CMDBASE} up -d"
-STARTDB="${CMDBASE} up initdb; ${CMDBASE} up -d db"
 STOP="${CMDBASE} stop"
 
 RUNAS=root
@@ -29,25 +28,22 @@ su -c "$START" $RUNAS
 echo 'Service started' >&2
 }
 
-startdb() {
-echo 'Starting database…' >&2
-echo "$STARTDB" >&2
-su -c "$STARTDB" $RUNAS
-echo 'Database started' >&2
-}
-
 stop() {
 echo 'Stopping service…' >&2
 su -c "$STOP" $RUNAS
 echo 'Service stopped' >&2
 }
 
+status() {
+docker ps | grep $PROJECT
+}
+
 case "$1" in
+status)
+status
+;;
 start)
 start
-;;
-startdb)
-startdb
 ;;
 stop)
 stop
