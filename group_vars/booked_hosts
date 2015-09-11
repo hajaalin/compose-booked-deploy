@@ -1,6 +1,9 @@
 ---
 # vars file for booked_hosts
 
+# owner of image repository
+docker_owner: "hajaalin"
+
 app_name: "booked"
 compose_tag: "ansible"
 
