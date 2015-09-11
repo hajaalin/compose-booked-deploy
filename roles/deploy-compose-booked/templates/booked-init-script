@@ -38,6 +38,11 @@ status() {
 docker ps | grep $PROJECT
 }
 
+# this does not remove running containers
+remove_containers() {
+docker rm {{ service_name }}_mysql {{ service_name }}_apache {{ service_name }}_ambassador
+}
+
 case "$1" in
 status)
 status
@@ -52,6 +57,9 @@ restart)
 stop
 start
 ;;
+remove_containers)
+remove_containers
+;;
 *)
-echo "Usage: $0 {start|startdb|stop|restart}"
+echo "Usage: $0 {start|startdb|stop|restart|remove_containers}"
 esac
