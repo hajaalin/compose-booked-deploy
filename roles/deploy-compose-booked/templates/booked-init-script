@@ -61,5 +61,5 @@ remove_containers)
 remove_containers
 ;;
 *)
-echo "Usage: $0 {start|startdb|stop|restart|remove_containers}"
+echo "Usage: $0 {start|stop|restart|status|remove_containers}"
 esac
