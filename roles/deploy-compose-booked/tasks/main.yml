@@ -9,6 +9,9 @@
 - name: Shutdown previous version if it exists
   service: name={{ service_name }} state=stopped
   when: p.stat.exists
+- name: Remove existing containers
+  shell: service {{ service_name }} remove_containers
+  when: p.stat.exists
 
 - name: Initialize the deploy root and gather facts
   file: path={{ deploy_root }}/{{ item }} state=directory
