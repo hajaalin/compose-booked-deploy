@@ -41,3 +41,9 @@
 
 - name: start service
   service: name={{ service_name }} state=started
+
+- name: test connection from apache container to db container
+  shell: sleep 10; docker exec {{ service_name }}_apache ping mysql
+  
+- name: initialize database (this should have happened automatically already...)
+  shell: sleep 30; docker exec {{ service_name }}_apache php lmu/init.php
