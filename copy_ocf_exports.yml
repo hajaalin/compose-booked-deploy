@@ -1,0 +1,16 @@
+---
+
+- hosts: booked_hosts
+  sudo: yes
+  vars:
+    ocf_export_orig: "/home/hajaalin/tmp/ocf_export"
+  tasks:
+    - name: copy OCF Scheduler data to remote machine
+      copy: src={{ ocf_export_orig }}/{{ item }} dest={{ ocf_export_dir }}/{{ item }} owner=root group=root mode=644 backup=yes
+      with_items:
+        - users.csv
+        - resources.csv
+        - accounts.csv
+        - access.csv
+        - reservations.csv
+

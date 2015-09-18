@@ -32,7 +32,6 @@ apache:
   links:
    - "ambassador:mysql"
   volumes:
-   - "/home/hajaalin/GitHub/fig-booked/apache/php:/newphp"
    - "/etc/localtime:/etc/localtime"
    - {{ docker_host_certificate }}:/etc/pki/tls/certs/docker-host-certificate.pem
    - {{ docker_host_key }}:/etc/pki/tls/private/docker-host.key
