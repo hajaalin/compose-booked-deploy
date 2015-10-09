@@ -2,6 +2,8 @@
 
 - hosts: booked_hosts
   sudo: yes
+  vars:
+    - compose_booked_tag: "shuffle-d132f38e7e4b760485ad2b5db197f8dee1c5c143"
   roles:
     - deploy-compose-booked
     

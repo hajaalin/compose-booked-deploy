@@ -6,7 +6,7 @@ ambassador:
   command: "-name {{ service_name }}_mysql -name {{ service_name }}_apache"
 
 mysql:
-  image: {{ docker_owner }}/booked-mysql:{{ docker_tag }}
+  image: {{ docker_owner }}/booked-mysql:{{ compose_booked_tag }}
   container_name: {{ service_name }}_mysql
   environment:
     MYSQL_ROOT_PASSWORD:
@@ -19,7 +19,7 @@ mysql:
    - "/etc/localtime:/etc/localtime"
 
 apache:
-  image: {{ docker_owner }}/booked-apache-shib:{{ docker_tag }}
+  image: {{ docker_owner }}/booked-apache-lmu-shib:{{ docker_tag }}
   container_name: {{ service_name }}_apache
   ports:
    - "443:443"
